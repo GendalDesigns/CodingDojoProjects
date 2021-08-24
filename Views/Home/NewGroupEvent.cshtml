@@ -1,0 +1,46 @@
+@*
+@model GroupEvent
+<body class="bg-dark text-white">
+    
+
+<div class="container">
+    <h1>Create an Activity</h1>
+    <a href="/AllGroupEvents" class="btn btn-lg btn-info m-3">Home</a>
+    <a href="/Logout" class="btn btn-lg btn-danger m-3">Logout</a>
+
+    <form asp-action="NewGroupEventProcess" asp-controller="Home" method="POST">
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control w-50" placeholder="Input Activity Title">
+            <span class="alert-danger" asp-validation-for="Title"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="DateAndTime"></label>
+            <input asp-for="DateAndTime" type="datetime-local" class="form-control w-50" placeholder="Input Date and Time">
+            <span class="alert-danger" asp-validation-for="DateAndTime"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Duration"></label>
+            <input asp-for="Duration" class="form-control w-50" placeholder="Input Duration">
+            <span class="alert-danger" asp-validation-for="Duration"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="DurationUnit"></label>
+            <select asp-for="DurationUnit" id="DurationUnit" class="form-control w-50">
+                <option disabled selected>Select a Duration Unit</option>
+                <option value="Hours">Hours</option>
+                <option value="Minutes">Minutes</option>
+                <option value="Days">Days</option>
+            </select>
+            <span class="alert-danger" asp-validation-for="DurationUnit"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description"  class="form-control w-50" placeholder="Input Description"></textarea>
+            <span class="alert-danger" asp-validation-for="Description"></span>
+        </div>
+        <input type="submit" class="btn btn-lg btn-primary mt-3" value="Create Activity!">
+    </form>
+</div>
+
+</body> *@
