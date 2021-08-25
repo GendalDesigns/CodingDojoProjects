@@ -10,6 +10,8 @@ using Microsoft.Extensions.Hosting;
 
 using ApartmentNetwork.Models;
 using Microsoft.EntityFrameworkCore;
+// Added for Live Chat
+using SignalRChat.Hubs;
 
 namespace ApartmentNetwork
 {
@@ -29,6 +31,9 @@ namespace ApartmentNetwork
             services.AddSession();
             services.AddDbContext<MyContext>(options => options.UseMySql (Configuration["DBInfo:ConnectionString"]));
             services.AddMvc(options => options.EnableEndpointRouting = false);
+            // Added for Live Chat
+            services.AddRazorPages();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +60,9 @@ namespace ApartmentNetwork
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                    // I added this for Live Chat
+                    endpoints.MapRazorPages();
+                    endpoints.MapHub<ChatHub>("/chatHub");
             });
         }
     }

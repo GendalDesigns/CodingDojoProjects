@@ -1,11 +1,72 @@
-<nav class="container">
-    <h1>Welcome to the Dojo Activity Center!</h1>
-    <h4>Hello @ViewBag.CurrentUser.FirstName!</h4>
-    <div class="container d-flex justify-around">
-        <a href="/NewPost" class="btn btn-lg btn-info m-3">Add New Post</a>
+@page
+@using ApartmentNetwork.Models
+@* @model Building *@
+
+<nav id="navBar">
+    <h1>Dashboard!</h1>
+    <div>
+        <h4>Hello @ViewBag.CurrentUser.FirstName @ViewBag.CurrentUser.LastName!</h4>
+        <h4>Building Number @ViewBag.CurrentUser.BuildingId!</h4>
+    </div>
+    <div id="navButtons">
         <a href="/Logout" class="btn btn-lg btn-danger m-3">Logout</a>
     </div>
 </nav>
 
-<div class="container">Box 1</div>
-<div class="container">Box 2</div>
+
+<div id="dashboardLayout">
+
+    <div id="liveChatCol">
+        <p>Live Chat for [apartment address]</p>
+        
+        <ul id="messagesList"></ul>
+        <div><input type="hidden" id="userInput" value=">@ViewBag.CurrentUser.FirstName, @ViewBag.CurrentUser.AptNumber"/></div>
+        <div><input type="hidden" id="bldgID" value=">@ViewBag.CurrentUser.BuildingId"/></div>
+        <input type="text" id="messageInput" />
+        <input type="button" id="sendButton" value="Send Message" class="addButton btn btn-lg btn-info m-3" />
+        @* <a class="addButton btn btn-lg btn-info m-3">Add New Message</a> *@
+    </div>
+
+    <div id="buildingEventsCol">
+        <p>this is the  building events</p>
+        <a href="/NewPost" class="addButton btn btn-lg btn-info m-3">Add New Event</a>
+
+    </div>
+    <div id="postsCol">
+        <p>this is the posts column</p>
+        <a href="/NewPost" class="addButton btn btn-lg btn-info m-3">Add New Post</a>
+    </div>
+
+</div>  @* dashboardLayout *@
+
+    <div class="container" id="AllBuildingResidentsTable">
+        <table class="table text-white">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Apartment #</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @* For every row of the table, and using every groupevent's data that appears in those rows *@
+            @* @foreach (var item in ViewBag.AllBuildingResidents) *@
+            {
+                @* @foreach (var resident in item) *@
+                {
+                    
+                    @* <td>@resident.FirstName @resident.LastName</td> *@
+                }
+                <tr>
+                <!-- these have to line up with the names in the SQL database -->
+                    @* <td><a href="/SingleGroupEvent/@resident.GroupEventID">@resident.Title</a></td>  *@
+                    
+                    @* <td>@resident.Planner.FirstName @resident.Planner.LastName</td> *@
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+@* I added this for Live Chat *@
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

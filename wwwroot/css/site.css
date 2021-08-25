@@ -69,3 +69,89 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+
+
+
+* {
+  height: auto;
+  width: auto;
+  margin: 0px auto;
+  padding: 0px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* border: .25px solid rgb(129, 173, 158); */
+}
+
+#navBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: sandybrown;
+  align-items:center;
+  margin: 0px;
+  width: 100%;
+  /* padding: 5px; */
+}
+
+#navButtons{
+  display: flex;
+  justify-content: space-around;
+}
+
+#dashboardLayout{
+  border: .25px solid aquamarine;
+  display: flex;
+  justify-content: flex-start;
+  /* flex-direction: column; */
+  background-color: oldlace;
+  height: 100%;
+  width: 100%;
+}
+
+
+#liveChatCol{
+  display: flex;
+  flex: 1;
+  align-items: center;
+  /* justify-content: flex-start; */
+  flex-direction: column;
+  background-color: red;
+  height: 100%;
+  width: 100%;
+}
+
+
+#buildingEventsCol{
+  display: flex;
+  flex: 2;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+  background-color: green;
+  height: 100%;
+  width: 100%;
+}
+
+
+#postsCol{
+  display: flex;
+  flex: 1;
+  align-items: center;
+  /* justify-content: flex-start; */
+  flex-direction: column;
+  background-color: blue;
+  height: 100%;
+  width: 100%;
+}
+
+.addButton{
+  /* display: flex;
+  /* flex: 1; */
+  /* justify-content:flex-end; */
+  /* align-items: center; */
+  /* flex-direction: column; */
+  /* background-color: blue; */
+  /* height: 100%; */
+  width: fit-content;
+}
+

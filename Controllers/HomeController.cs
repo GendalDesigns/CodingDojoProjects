@@ -79,6 +79,27 @@ namespace ApartmentNetwork.Controllers
         [HttpPost("LoginUser")]
         public IActionResult LoginUser(LoginUser userSubmission)
         {
+//vvvvvvvvvv LOGIN OVERRIDE -- MUST DELETE BEFORE LAUNCH vvvvvvvvvvvvvvvvvvvvvv//
+            if(userSubmission.LoginEmail == "1")
+                {
+                HttpContext.Session.SetInt32("UserId", 1);
+                Console.WriteLine("Session is "+HttpContext.Session.GetInt32("UserId"));
+                return RedirectToAction("Dashboard");
+                }
+            if(userSubmission.LoginEmail == "2")
+                {
+                HttpContext.Session.SetInt32("UserId", 2);
+                Console.WriteLine("Session is "+HttpContext.Session.GetInt32("UserId"));
+                return RedirectToAction("Dashboard");
+                }
+            if(userSubmission.LoginEmail == "3")
+                {
+                HttpContext.Session.SetInt32("UserId", 3);
+                Console.WriteLine("Session is "+HttpContext.Session.GetInt32("UserId"));
+                return RedirectToAction("Dashboard");
+                }
+//^^^^^^^^^^^^^^ LOGIN OVERRIDE -- MUST DELETE BEFORE LAUNCH ^^^^^^^^^^^^^^^^^^//
+
             if(ModelState.IsValid)
             {
                 // If inital ModelState is valid, query for a user with provided email
@@ -91,6 +112,7 @@ namespace ApartmentNetwork.Controllers
                     ModelState.AddModelError("LoginEmail", "Invalid Email/Password");
                     return View("LoginReg");
                 }
+                
                 
                 // Initialize hasher object
                 // var hasher = new PasswordHasher<LoginUser>();
@@ -138,18 +160,23 @@ namespace ApartmentNetwork.Controllers
                 ModelState.AddModelError("FirstName", "Please Register First");
                 return View("LoginReg");
             }
-
+            //Import User data from database
             User userInDb = _context.Users
-                    // .Include(usr => usr.Attending)
+                    // .Include(usr => usr.Residence)
                     .FirstOrDefault(u => u.UserId == sessionID);
             ViewBag.CurrentUser = userInDb;
+            
 
-            // Import data from database
-            // ViewBag.AllGroupEvents = _context.GroupEvents
-            // .Include(pln => pln.Planner)
-            // .Include(gst => gst.Guests)
-            // .ThenInclude(usr => usr.User)
-            // .OrderBy(evnt => evnt.DateAndTime)
+            // User usersInBuilding = _context.Users
+            //         .Include(usr => usr.Residence)
+            //         .Where(u => u.BuildingId == sessionID);
+            //         .List();
+
+
+            // Import  building data from database
+            // ViewBag.AllBuildingResidents = _context.Buildings
+            // .Include(pln => pln.Residents)
+            // .Where(bldg => bldg.BuildingId == userInDb.BuildingId)
             // .ToList();
 
             return View();

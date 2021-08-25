@@ -9,8 +9,8 @@ namespace ApartmentNetwork.Models
         [Required(ErrorMessage = "You need to add an email!")]
         // [Required(String =".com")]
         [MinLength(5, ErrorMessage = "You need to add an email with at least 5 letters!")]
-        [DataType(DataType.EmailAddress)]
-        [EmailAddress]
+        // [DataType(DataType.EmailAddress)]
+        // [EmailAddress]
         public string LoginEmail {get;set;}
 
         [Display(Name = "User Password")]

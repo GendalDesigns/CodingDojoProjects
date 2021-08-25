@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using ApartmentNetwork.Models;
 
-namespace ApartmentNetwork
+namespace ApartmentNetwork.Models
 {
     public class User
     {
@@ -18,11 +18,15 @@ namespace ApartmentNetwork
         [MinLength(2)]
         [Display(Name = "Last Name: ")]
         public string LastName {get; set; }
-        [Required(ErrorMessage = "You need to add an email!")]
-        [EmailAddress]
+//vvvvvv LOGIN OVERRIDE -- MUST UNDO COMMENT BEFORE LAUNCH vvvvvvvvvvvvv//
+        [Required]
+        // [EmailAddress]
         [Display(Name = "Email:")]
+//^^^^^^^ LOGIN OVERRIDE -- MUST UNDO COMMENT BEFORE LAUNCH ^^^^^^^^^^^^//
         public string Email {get; set; }
+        // [Required]
         public string AptNumber {get; set; }
+
         [Required]
         [DataType(DataType.Password)]
         [MinLength(8, ErrorMessage ="Password must be at least 8 characters")]
@@ -30,15 +34,17 @@ namespace ApartmentNetwork
         public string Password {get; set; }
         [Required]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Both Passwords need to match!")]
+        [Compare("Password")]
         [Display(Name = "Confirm Password:")]
         [NotMapped]
         public string Confirm {get; set; }
+        // public bool IsAdmin {get; set; } = false;
         public DateTime CreatedAt {get; set; } = DateTime.Now;
         public DateTime UpdatedAt {get; set; } = DateTime.Now;
-        // public int AdminBuildingId {get; set; }
-        // public Building AdminOfBuilding {get; set; }
-        public int ResidenceId {get; set; }
-        public List<Post> PostedItems {get; set; }
+        // public List<Comment> UserComments {get; set; }
+        // public List<Event> UserEvents {get; set; }
+        // public List<Bulletin> UserBulletins {get; set; }
+        public int BuildingId {get; set; }
+        // public Building Residence {get; set; }
     }
 }
