@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using ApartmentNetwork.Models;
 
-namespace ApartmentNetwork.Models
+namespace ApartmentNetwork
 {
     public class User
     {
@@ -18,15 +18,12 @@ namespace ApartmentNetwork.Models
         [MinLength(2)]
         [Display(Name = "Last Name: ")]
         public string LastName {get; set; }
-//vvvvvv LOGIN OVERRIDE -- MUST UNDO COMMENT BEFORE LAUNCH vvvvvvvvvvvvv//
         [Required]
-        // [EmailAddress]
+        [EmailAddress]
         [Display(Name = "Email:")]
-//^^^^^^^ LOGIN OVERRIDE -- MUST UNDO COMMENT BEFORE LAUNCH ^^^^^^^^^^^^//
         public string Email {get; set; }
-        // [Required]
+        [Required]
         public string AptNumber {get; set; }
-
         [Required]
         [DataType(DataType.Password)]
         [MinLength(8, ErrorMessage ="Password must be at least 8 characters")]
@@ -38,13 +35,14 @@ namespace ApartmentNetwork.Models
         [Display(Name = "Confirm Password:")]
         [NotMapped]
         public string Confirm {get; set; }
-        // public bool IsAdmin {get; set; } = false;
+        public bool IsAdmin {get; set; } = false;
+        public bool ConfirmedByAdmin {get; set; } = false;
+        public int BuildingId {get; set; } = 1;
         public DateTime CreatedAt {get; set; } = DateTime.Now;
         public DateTime UpdatedAt {get; set; } = DateTime.Now;
-        // public List<Comment> UserComments {get; set; }
-        // public List<Event> UserEvents {get; set; }
-        // public List<Bulletin> UserBulletins {get; set; }
-        public int BuildingId {get; set; }
-        // public Building Residence {get; set; }
+        public List<Comment> UserComments {get; set; }
+        public List<Event> UserEvents {get; set; }
+        public List<Bulletin> UserBulletins {get; set; }
+        public Building Residence {get; set; }
     }
 }

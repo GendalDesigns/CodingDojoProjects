@@ -1,19 +1,18 @@
-@model LoginUser 
+@model LoginUser
 
-<div class="container">
-    @* <a href="/register" class="btn btn-warning">Need to register?</a> *@
-    <h1>Login An Existing User</h1>
-    <form asp-action="LoginUser" asp-controller="Home" method="POST">
+<div class="smcontainer">
+    <h1 class="display-4">Login</h1>
+    <form asp-controller="Home" asp-action="CheckLogin" method="POST">
         <div class="form-group">
             <label asp-for="LoginEmail"></label>
-            <input asp-for="LoginEmail" class="form-control w-50" placeholder="Input User Email">
-            <span class="alert-danger" asp-validation-for="LoginEmail"></span>
+            <input asp-for="LoginEmail" class="form-control">
+            <span asp-validation-for="LoginEmail" class="alert-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="LoginPassword"></label>
-            <input asp-for="LoginPassword" class="form-control w-50" placeholder="Input User Password">
-            <span class="alert-danger" asp-validation-for="LoginPassword"></span>
+            <input asp-for="LoginPassword" class="form-control">
+            <span asp-validation-for="LoginPassword" class="alert-danger"></span>
         </div>
-        <input type="submit" class="btn btn-lg btn-primary mt-3" value="Submit">
+        <input type="submit" class="btn btn-success btn-large">
     </form>
 </div>
