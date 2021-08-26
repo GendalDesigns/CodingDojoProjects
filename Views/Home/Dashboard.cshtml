@@ -21,57 +21,93 @@
 
 <div id="dashboardLayout">
 
-    <div id="liveChatCol">
-        <p>Live Chat for [apartment address]</p>
+    <div id="liveChatCol" class="infoCol">
+        <h3>Live Chat</h3>
+        <div class="textCol">
         
         <ul id="messagesList"></ul>
-        <div><input type="hidden" id="userInput" value=">@ViewBag.CurrentUser.FirstName, @ViewBag.CurrentUser.AptNumber"/></div>
-        <div><input type="hidden" id="bldgID" value=">@ViewBag.CurrentUser.BuildingId"/></div>
-        <input type="text" id="messageInput" />
+        <div><input type="hidden" id="userInput" value="@ViewBag.CurrentUser.FirstName, @ViewBag.CurrentUser.AptNumber"/></div>
+        <div><input type="hidden" id="bldgId" value="@ViewBag.CurrentUser.BuildingId"/></div>
+        <input type="text" id="messageInput" onfocus="this.value=''"/>
         <input type="button" id="sendButton" value="Send Message" class="addButton btn btn-lg btn-info m-3" />
         @* <a class="addButton btn btn-lg btn-info m-3">Add New Message</a> *@
-    </div>
+        </div> @* End of  textCol *@
+    </div> @* End of LiveChatCol *@
 
-    <div id="buildingEventsCol">
-        <p>this is the  building events</p>
+    <div id="buildingEventsCol" class="infoCol">
+        <h3>Events</h3>
+        <div class="textCol">
+            <div class="eventTitle"><h5><b> Birthday Party    9/17    All Day</b></h5></div>
+            <div class="eventPlanner"><h6>Planner: John Goodman</h6></div>
+                <p class="eventDescription">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi accusamus voluptas reiciendis doloribus architecto necessitatibus quibusdam aut, fugiat optio distinctio quas pariatur, animi unde inventore, tempore reprehenderit fugit? Neque, adipisci?</p>
+        </div>@* end of TextCol *@
+        <hr/>
+        <div class="textCol">
+            <div class="eventTitle"><h5><b> Halloween Party    10/31    9:00PM</b></h5></div>
+            <div class="eventPlanner"><h6>Planner: Jack Skullington</h6></div>
+                <p class="eventDescription">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi accusamus voluptas reiciendis doloribus architecto necessitatibus quibusdam aut, fugiat optio distinctio quas pariatur, animi unde inventore, tempore reprehenderit fugit? Neque, adipisci?</p>
+        </div>@* end of TextCol *@
+        <hr/>
+@* <hr style="height:2px;border-width:0;color:gray;background-color:gray"> *@
+
+
         <a href="/NewPost" class="addButton btn btn-lg btn-info m-3">Add New Event</a>
 
     </div>
-    <div id="postsCol">
-        <p>this is the posts column</p>
+    <div id="postsCol" class="infoCol">
+        <h3>Posts</h3>
+        <div class="textCol">
+            <div class="eventTitle"><h5><b> Lost Dog</b></h5></div>
+            <div class="eventPlanner"><h6>Pete Borgensen, 8g</h6></div>
+            <p class="eventDescription">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque, adipisci?</p>
+        </div>@* end of TextCol *@
+        <hr/>
+        <div class="textCol">
+            <div class="eventTitle"><h5><b>Car Lights On</b></h5></div>
+            <div class="eventPlanner"><h6>Jane Harrow, 3c</h6></div>
+            <p class="eventDescription">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque, adipisci?</p>
+        </div>@* end of TextCol *@
+        <hr/>
         <a href="/NewPost" class="addButton btn btn-lg btn-info m-3">Add New Post</a>
     </div>
 
 </div>  @* dashboardLayout *@
 
+
+
     <div class="container" id="AllBuildingResidentsTable">
         <table class="table text-white">
-            <thead>
+            @* <thead>
                 <tr>
                     <th>Name</th>
                     <th>Apartment #</th>
                     <th>Actions</th>
                 </tr>
-            </thead>
+            </thead> *@
             <tbody>
             @* For every row of the table, and using every groupevent's data that appears in those rows *@
             @* @foreach (var item in ViewBag.AllBuildingResidents) *@
-            {
+            
                 @* @foreach (var resident in item) *@
-                {
-                    
+                
                     @* <td>@resident.FirstName @resident.LastName</td> *@
-                }
+                
                 <tr>
                 <!-- these have to line up with the names in the SQL database -->
                     @* <td><a href="/SingleGroupEvent/@resident.GroupEventID">@resident.Title</a></td>  *@
                     
                     @* <td>@resident.Planner.FirstName @resident.Planner.LastName</td> *@
                 </tr>
-            }
+            
             </tbody>
         </table>
     </div>
 @* I added this for Live Chat *@
+<script>
+    @* var someStringValue = '@(ViewBag.someStringValue)'; *@
+    @* var someNumericValue = @(ViewBag.someNumericValue); *@
+    @* var bldgIdFromHTML = @(ViewBag.CurrentUser.BuildingId); *@
+</script>
+
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>

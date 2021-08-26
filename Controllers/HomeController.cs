@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -123,6 +123,7 @@ namespace ApartmentNetwork.Controllers
                 .FirstOrDefault(us => us.BuildingId == activeUser.BuildingId && us.IsAdmin == true);
             return View();
         }
+
 
         //PROCESS LOGIN INFO
         [HttpPost("checkLogin")]
