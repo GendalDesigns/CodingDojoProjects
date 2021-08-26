@@ -98,6 +98,12 @@ namespace ApartmentNetwork.Controllers
                 Console.WriteLine("Session is "+HttpContext.Session.GetInt32("UserId"));
                 return RedirectToAction("Dashboard");
                 }
+            if(userSubmission.LoginEmail == "4")
+                {
+                HttpContext.Session.SetInt32("UserId", 4);
+                Console.WriteLine("Session is "+HttpContext.Session.GetInt32("UserId"));
+                return RedirectToAction("Dashboard");
+                }
 //^^^^^^^^^^^^^^ LOGIN OVERRIDE -- MUST DELETE BEFORE LAUNCH ^^^^^^^^^^^^^^^^^^//
 
             if(ModelState.IsValid)

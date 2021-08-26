@@ -20,15 +20,15 @@
         <p>Live Chat for [apartment address]</p>
         
         <ul id="messagesList"></ul>
-        <div><input type="hidden" id="userInput" value=">@ViewBag.CurrentUser.FirstName, @ViewBag.CurrentUser.AptNumber"/></div>
-        <div><input type="hidden" id="bldgID" value=">@ViewBag.CurrentUser.BuildingId"/></div>
-        <input type="text" id="messageInput" />
+        <div><input type="hidden" id="userInput" value="@ViewBag.CurrentUser.FirstName, @ViewBag.CurrentUser.AptNumber"/></div>
+        <div><input type="hidden" id="bldgId" value="@ViewBag.CurrentUser.BuildingId"/></div>
+        <input type="text" id="messageInput" onfocus="this.value=''"/>
         <input type="button" id="sendButton" value="Send Message" class="addButton btn btn-lg btn-info m-3" />
         @* <a class="addButton btn btn-lg btn-info m-3">Add New Message</a> *@
     </div>
 
     <div id="buildingEventsCol">
-        <p>this is the  building events</p>
+        <p>this is the building events</p>
         <a href="/NewPost" class="addButton btn btn-lg btn-info m-3">Add New Event</a>
 
     </div>
@@ -54,7 +54,6 @@
             {
                 @* @foreach (var resident in item) *@
                 {
-                    
                     @* <td>@resident.FirstName @resident.LastName</td> *@
                 }
                 <tr>
@@ -68,5 +67,11 @@
         </table>
     </div>
 @* I added this for Live Chat *@
+<script>
+    @* var someStringValue = '@(ViewBag.someStringValue)'; *@
+    @* var someNumericValue = @(ViewBag.someNumericValue); *@
+    @* var bldgIdFromHTML = @(ViewBag.CurrentUser.BuildingId); *@
+</script>
+
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>
