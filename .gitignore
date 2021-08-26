@@ -1,3 +1,9 @@
 ApartmentNetwork.csproj
 
 appsettings.json
+
+Migrations/
+
+bin/
+
+obj/
