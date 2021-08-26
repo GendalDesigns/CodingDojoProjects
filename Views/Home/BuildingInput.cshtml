@@ -1,0 +1,26 @@
+@model Building
+
+<h1>Enter your Building information: </h1>
+<form asp-controller="Home" asp-action="BuildingCheck" method="post">
+    <label asp-for="BuildingName"></label>
+    <input asp-for="BuildingName">
+    <span asp-validation-for="BuildingName"></span>
+
+    <label asp-for="AddressLine1"></label>
+    <input asp-for="AddressLine1">
+    <span asp-validation-for="AddressLine1"></span>
+
+    <label asp-for="City"></label>
+    <input asp-for="City">
+    <span asp-validation-for="City"></span>
+
+    <label asp-for="State"></label>
+    <input asp-for="State">
+    <span asp-validation-for="State"></span>
+
+    <label asp-for="ZipCode"></label>
+    <input asp-for="ZipCode">
+    <span asp-validation-for="ZipCode"></span>
+
+    <input type="submit">
+</form>

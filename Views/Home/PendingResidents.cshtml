@@ -1,0 +1,30 @@
+@model User
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Apartment</td>
+            <td>Waiting Since</td>
+            <td>Admit</td>
+            <td>Decline</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in ViewBag.AllBuildingResidents.Residents)
+        {
+            if(user.ConfirmedByAdmin != true)
+            {
+                <tr>
+                    <td>@user.FirstName @user.LastName</td>
+                    <td>@user.AptNumber</td>
+                    <td>@user.CreatedAt</td>
+                    <td><a href="/pendingResidents/admit/@user.UserId" class="btn btn-sm btn-success">Admit</a></td>
+                    <td><a href="/pendingResidents/decline/@user.UserId" class="btn btn-sm btn-danger">Decline</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<a href="Dashboard">Return to Dashboard</a>
+<a href="Logout">Logout</a>

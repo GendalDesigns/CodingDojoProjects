@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Threading.Tasks;
 
-namespace SignalRChat.Hubs
+namespace ApartmentNetwork.Hubs
 {
     public class ChatHub : Hub
     {

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Hosting;
 using ApartmentNetwork.Models;
 using Microsoft.EntityFrameworkCore;
 // Added for Live Chat
-using SignalRChat.Hubs;
+using ApartmentNetwork.Hubs;
 
 namespace ApartmentNetwork
 {
