@@ -57,3 +57,5 @@
 /Users/davidstorer/Documents/code/Collab/CodingDojoProjects/obj/Debug/net5.0/ApartmentNetwork.genruntimeconfig.cache
 /Users/davidstorer/Documents/code/Collab/CodingDojoProjects/obj/Debug/net5.0/Razor/Views/Home/Wait.cshtml.g.cs
 /Users/davidstorer/Documents/code/Collab/CodingDojoProjects/obj/Debug/net5.0/Razor/Views/Home/PendingResidents.cshtml.g.cs
+/Users/davidstorer/Documents/code/Collab/CodingDojoProjects/obj/Debug/net5.0/Razor/Views/Home/BulletinForm.cshtml.g.cs
+/Users/davidstorer/Documents/code/Collab/CodingDojoProjects/obj/Debug/net5.0/Razor/Views/Home/EventForm.cshtml.g.cs

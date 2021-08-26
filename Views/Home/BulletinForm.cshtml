@@ -1,0 +1,18 @@
+@model Bulletin
+
+<h1>Provide your post information:</h1>
+<form asp-controller="Home" asp-action="BulletinSubmit" method="post">
+    <label asp-for="Title"></label>
+    <input asp-for="Title">
+    <span asp-validation-for="Title"></span>
+
+    <label asp-for="Topic"></label>
+    <input asp-for="Topic">
+    <span asp-validation-for="Topic"></span>
+
+    <label asp-for="Content"></label>
+    <input asp-for="Content">
+    <span asp-validation-for="Content"></span>
+
+    <input type="submit">
+</form>
