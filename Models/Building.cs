@@ -1,4 +1,4 @@
-/* using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
@@ -10,15 +10,21 @@ namespace ApartmentNetwork
     {
         [Key]
         public int BuildingId {get; set; }
-        // [Required]
-        [Display(Name = "Building Name: ")]
+        [Display(Name = "Building Name (optional): ")]
         public string BuildingName {get; set; }
-        public int AddressId {get; set; }
-        // public Address Address {get; set; }
+        [Required]
+        public string AddressLine1 {get; set; }
+        [Required]
+        [Display(Name = "City: ")]
+        public string City {get; set; }
+        [Required]
+        [Display(Name = "State: ")]
+        public string State {get; set; }
+        [Required]
+        [Display(Name = "Zip Code: ")]
+        public int ZipCode {get; set; }
         public DateTime CreatedAt {get; set; } = DateTime.Now;
         public DateTime UpdatedAt {get; set; } = DateTime.Now;
-        // public int UserId {get; set; }
-        // public User Admin {get; set; }
         public List<User> Residents {get; set; }
     }
-} */
+}

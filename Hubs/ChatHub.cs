@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 using Microsoft.AspNetCore.SignalR;
 //CHANGED THIS FROM SIGNALR
+
 namespace ApartmentNetwork.Hubs
 {
     public class ChatHub : Hub

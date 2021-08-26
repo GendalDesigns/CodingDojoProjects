@@ -9,6 +9,11 @@
         <h4>Building Number @ViewBag.CurrentUser.BuildingId!</h4>
     </div>
     <div id="navButtons">
+        
+        @if(ViewBag.CurrentUser.IsAdmin == true)
+        {
+            <a href="/pendingResidents">Pending Neighbors (@ViewBag.PendingResidents)</a>
+        }
         <a href="/Logout" class="btn btn-lg btn-danger m-3">Logout</a>
     </div>
 </nav>

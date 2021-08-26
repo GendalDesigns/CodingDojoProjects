@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -22,125 +22,155 @@ namespace ApartmentNetwork.Controllers
             _context = context;
         }
 
-        //COMBINED PARTIAL LOGIN/REGISTRATION PAGE
+        //LOGIN REG PAGE
+        [HttpGet("/")]
         public IActionResult Index()
         {
-            return View("LoginReg");
+            HttpContext.Session.SetInt32("loggedIn", 0);
+
+            return View();
         }
 
-        //REGISTER NEW USER PAGE//
-        // [HttpGet("Register")]
-        // public IActionResult Register()
-        // {
-        //     return View();
-        // }
-
-        //REGISTER NEW USER PROCESS//
-        [HttpPost("RegisterUser")]
-        public IActionResult RegisterUser(User newUser)
+        //SUBMIT REGISTRATION INFO
+        [HttpPost("register")]
+        public IActionResult Register(User newUser)
         {
-            // Check initial ModelState
             if(ModelState.IsValid)
             {
-                // If a User exists with provided email
-                if(_context.Users.Any(u => u.Email == newUser.Email))
+                if(_context.Users.Any(user => user.Email == newUser.Email))
                 {
-                    // Manually add a ModelState error to the Email field, with provided
-                    // error message
                     ModelState.AddModelError("Email", "Email already in use!");
-                    return View("LoginReg");
+
+                    return View("Index");
                 }
-                else
-                {
-                    //add the stuff to the database!
-                    // Initializing a PasswordHasher object, providing our User class as its type
-                    PasswordHasher<User> Hasher = new PasswordHasher<User>();
-                    newUser.Password = Hasher.HashPassword(newUser, newUser.Password);
-                    //Save your user object to the database
-                    Console.WriteLine("Success! now you can add me to the database!");
-                    _context.Add(newUser);
-                    _context.SaveChanges();
-                    HttpContext.Session.SetInt32("UserId", newUser.UserId);
-                    return RedirectToAction("Dashboard");
-                }
+
+                PasswordHasher<User> Hasher = new PasswordHasher<User>();
+                newUser.Password = Hasher.HashPassword(newUser, newUser.Password);
+
+                _context.Users.Add(newUser);
+                _context.SaveChanges();
+
+                HttpContext.Session.SetInt32("LoggedIn", 1);
+                User  activeUser= _context.Users.FirstOrDefault(u => u.Email == newUser.Email);
+                HttpContext.Session.SetInt32("UserId", activeUser.UserId);
+
+                return RedirectToAction("BuildingInput");
             }
-            return View("LoginReg");
+
+            return View("Index");
+        }
+
+        //ENTER BUILDING INFO
+        [HttpGet("register/building")]
+        public IActionResult BuildingInput()
+        {
+            return View();
+        }
+
+        //PROCESS BUILDING INFO
+        [HttpPost("register/building/check")]
+        public IActionResult BuildingCheck(Building submittedBuilding)
+        {
+            User  activeUser= _context.Users.FirstOrDefault(u => u.UserId == (int)HttpContext.Session.GetInt32("UserId"));
+
+            if(ModelState.IsValid){
+                var building = _context.Buildings.FirstOrDefault(build => build.AddressLine1 == submittedBuilding.AddressLine1 && build.ZipCode == submittedBuilding.ZipCode);
+
+                //If buliding does not exist, create and assign admin duties to user
+                if(building == null){
+                    
+                    _context.Add(submittedBuilding);
+                    _context.SaveChanges();
+                    var createdBuilding = _context.Buildings.FirstOrDefault(build => build.AddressLine1 == submittedBuilding.AddressLine1 && build.ZipCode == submittedBuilding.ZipCode);
+
+                    Console.WriteLine(createdBuilding.AddressLine1);
+
+                    activeUser.BuildingId = createdBuilding.BuildingId;
+                    activeUser.IsAdmin = true;
+                    activeUser.ConfirmedByAdmin = true;
+
+                    _context.SaveChanges();
+
+                    return RedirectToAction("BuildCreateSuccess");
+                }
+
+                //If building already exists, await admin confirmation before entering site
+                activeUser.BuildingId = building.BuildingId;
+                _context.SaveChanges();
+                
+                HttpContext.Session.SetInt32("BuildingId", building.BuildingId);
+
+                return RedirectToAction("Wait");
+            }
+            return View("BuildingInput");
+        }
+
+        //Landing page for new admins -- redirects to dashboard
+        [HttpGet("register/success")]
+        public IActionResult BuildCreateSuccess()
+        {
+            return View();
         }
 
 
-        //LOGIN USER PAGE//
-        // [HttpGet("Login")]
-        // public IActionResult Login()
-        // {
-        //     return View();
-        // }
-
-        //LOGIN EXISTING USER PROCESS//
-        [HttpPost("LoginUser")]
-        public IActionResult LoginUser(LoginUser userSubmission)
+        //Waiting room for unconfirmed users
+        [HttpGet("register/confirmationNeeded")]
+        public IActionResult Wait()
         {
-//vvvvvvvvvv LOGIN OVERRIDE -- MUST DELETE BEFORE LAUNCH vvvvvvvvvvvvvvvvvvvvvv//
-            if(userSubmission.LoginEmail == "1")
-                {
-                HttpContext.Session.SetInt32("UserId", 1);
-                Console.WriteLine("Session is "+HttpContext.Session.GetInt32("UserId"));
-                return RedirectToAction("Dashboard");
-                }
-            if(userSubmission.LoginEmail == "2")
-                {
-                HttpContext.Session.SetInt32("UserId", 2);
-                Console.WriteLine("Session is "+HttpContext.Session.GetInt32("UserId"));
-                return RedirectToAction("Dashboard");
-                }
-            if(userSubmission.LoginEmail == "3")
-                {
-                HttpContext.Session.SetInt32("UserId", 3);
-                Console.WriteLine("Session is "+HttpContext.Session.GetInt32("UserId"));
-                return RedirectToAction("Dashboard");
-                }
-            if(userSubmission.LoginEmail == "4")
-                {
-                HttpContext.Session.SetInt32("UserId", 4);
-                Console.WriteLine("Session is "+HttpContext.Session.GetInt32("UserId"));
-                return RedirectToAction("Dashboard");
-                }
-//^^^^^^^^^^^^^^ LOGIN OVERRIDE -- MUST DELETE BEFORE LAUNCH ^^^^^^^^^^^^^^^^^^//
+            User activeUser = _context.Users
+                .FirstOrDefault(usr => usr.UserId == (int)HttpContext.Session.GetInt32("UserId"));
+            ViewBag.BuildingAdmin = _context.Users
+                .FirstOrDefault(us => us.BuildingId == activeUser.BuildingId && us.IsAdmin == true);
+            return View();
+        }
 
+
+        //PROCESS LOGIN INFO
+        [HttpPost("checkLogin")]
+        public IActionResult CheckLogin(LoginUser login)
+        {
             if(ModelState.IsValid)
             {
-                // If inital ModelState is valid, query for a user with provided email
-                User userInDb = _context.Users
-                    .FirstOrDefault(u => u.Email == userSubmission.LoginEmail);
-                // If no user exists with provided email
+                var userInDb = _context.Users.FirstOrDefault(user => user.Email == login.LoginEmail);
+
                 if(userInDb == null)
                 {
-                    // Add an error to ModelState and return to View!
-                    ModelState.AddModelError("LoginEmail", "Invalid Email/Password");
-                    return View("LoginReg");
+                    ModelState.AddModelError("LoginEmail", "Invalid login");
+
+                    return View("Index");
                 }
-                
-                
-                // Initialize hasher object
-                // var hasher = new PasswordHasher<LoginUser>();
+
                 PasswordHasher<LoginUser> hasher = new PasswordHasher<LoginUser>();
-                
-                // verify provided password against hash stored in db
-                var result = hasher.VerifyHashedPassword(userSubmission, userInDb.Password, userSubmission.LoginPassword);
-                
-                // result can be compared to 0 for failure
+
+                var result = hasher.VerifyHashedPassword(login, userInDb.Password, login.LoginPassword);
+
                 if(result == 0)
                 {
-                    // handle failure (this should be similar to how "existing email" is handled)
-                    ModelState.AddModelError("LoginEmail", "Invalid Email/Password");
-                    return View("LoginReg");
+                    ModelState.AddModelError("LoginEmail", "Invalid login");
+                    return View("Index");
                 }
-                Console.WriteLine(userInDb.UserId);
-                HttpContext.Session.SetInt32("UserId", userInDb.UserId);
-                Console.WriteLine("Session is "+HttpContext.Session.GetInt32("UserId"));
+
+                Console.WriteLine("Logged in");
+                HttpContext.Session.SetInt32("LoggedIn", 1);
+
+                User  activeUser= _context.Users.FirstOrDefault(u => u.Email == login.LoginEmail);
+                HttpContext.Session.SetInt32("UserId", activeUser.UserId);
+
+                //If user's building ID is still set to the standin defaul, redirect to the enter-builing-info page
+                if(activeUser.BuildingId == 1)
+                {
+                    return RedirectToAction("BuildingInput");
+                }
+
+                //If the user is not the admin and they haven't been confirmed, redirect to the waiting room
+                if(activeUser.ConfirmedByAdmin != true)
+                {
+                    return RedirectToAction("Wait");
+                }
+
                 return RedirectToAction("Dashboard");
             }
-            Console.WriteLine("Model Is Not Valid");
-            return View("LoginReg");
+            return View("Index");
         }
 
         //LOGOUT USER//
@@ -149,7 +179,7 @@ namespace ApartmentNetwork.Controllers
         {
             HttpContext.Session.Clear();
             Console.WriteLine("Session has been cleared!");
-            return View("LoginReg");
+            return View("Index");
         }
 
 
@@ -172,6 +202,21 @@ namespace ApartmentNetwork.Controllers
                     .FirstOrDefault(u => u.UserId == sessionID);
             ViewBag.CurrentUser = userInDb;
             
+            //Get count of unadmitted residents for admin admission button
+            var BuildingResidents = _context.Buildings
+                .Include(bld => bld.Residents)
+                .FirstOrDefault(bld => bld.BuildingId == userInDb.BuildingId);
+            
+            var unadmittedCount = 0;
+            foreach(var user in BuildingResidents.Residents)
+            {
+                if(user.ConfirmedByAdmin != true)
+                {
+                    unadmittedCount ++;
+                }
+            }
+
+            ViewBag.PendingResidents = unadmittedCount;
 
             // User usersInBuilding = _context.Users
             //         .Include(usr => usr.Residence)
@@ -187,6 +232,50 @@ namespace ApartmentNetwork.Controllers
 
             return View();
         }
+
+        //ADMIN ACTION PENDING RESIDENTS
+        [HttpGet("pendingResidents")]
+        public IActionResult PendingResidents()
+        {
+            //Confirm active user is Admin
+            var activeUser = _context.Users.FirstOrDefault(usr => usr.UserId == (int)HttpContext.Session.GetInt32("UserId"));
+            if(activeUser.IsAdmin == true)
+            {
+                ViewBag.AllBuildingResidents = _context.Buildings
+                    .Include(bld => bld.Residents)
+                    .FirstOrDefault(bld => bld.BuildingId == activeUser.BuildingId);
+
+                return View();
+            }
+            return RedirectToAction("Dashboard");
+        }
+
+        //ADMIT A PENDING RESIDENT
+        [HttpGet("pendingResidents/admit/{id}")]
+        public IActionResult AdmitResident(int id)
+        {
+            User updateMe = _context.Users.FirstOrDefault(usr => usr.UserId == id);
+
+            updateMe.ConfirmedByAdmin = true;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("PendingResidents");
+        }
+
+        //DECLINE A PENDING RESIDENT
+        [HttpGet("pendingResidents/decline/{id}")]
+        public IActionResult DeclineResident(int id)
+        {
+            var deleteMe = _context.Users.FirstOrDefault(usr => usr.UserId == id);
+
+            _context.Users.Remove(deleteMe);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("PendingResidents");
+        }
+
 
 
         // DISPLAY NEW GROUPEVENT PAGE
