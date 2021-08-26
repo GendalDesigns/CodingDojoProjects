@@ -109,40 +109,62 @@ body {
 }
 
 
-#liveChatCol{
+.infoCol{
   display: flex;
-  flex: 1;
   align-items: center;
-  /* justify-content: flex-start; */
   flex-direction: column;
-  background-color: red;
+  border-radius: 10px;
+  margin: 10px 5px;
+  padding: 5px;
   height: 100%;
   width: 100%;
 }
 
+#liveChatCol{
+  flex: 1;
+  background-color: red;
+}
+
+#liveChatCol > .textCol{
+  background-color: lightcoral;
+}
 
 #buildingEventsCol{
-  display: flex;
   flex: 2;
   /* justify-content: center; */
-  align-items: center;
-  flex-direction: column;
   background-color: green;
-  height: 100%;
-  width: 100%;
+  
 }
 
+#buildingEventsCol > .textCol{
+  background-color: lightgreen;
+}
 
 #postsCol{
-  display: flex;
   flex: 1;
   align-items: center;
   /* justify-content: flex-start; */
-  flex-direction: column;
   background-color: blue;
-  height: 100%;
-  width: 100%;
 }
+#postsCol > .textCol{
+  background-color: lightblue;
+}
+
+.textCol{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 3px;
+  margin: 3px;
+}
+
+.residentEvent > .eventTitle{
+  display: flex;
+  flex-direction: column;
+  color: pink;
+
+}
+
 
 .addButton{
   /* display: flex;
@@ -155,3 +177,12 @@ body {
   width: fit-content;
 }
 
+hr {
+  display: block;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  /* border-width: 1px; */
+}
