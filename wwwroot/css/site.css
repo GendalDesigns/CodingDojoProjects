@@ -183,8 +183,6 @@ body{
   /* border: .25px solid aquamarine; */
   display: flex;
   justify-content: flex-start;
-  /* flex-direction: column; */
-  /* background-color: oldlace; */
   height: 100%;
   width: 100%;
 }
@@ -201,22 +199,20 @@ body{
   -webkit-box-shadow: 6px 5px 13px -2px #000000; 
   box-shadow: 6px 5px 13px -2px #000000;
   background-color: forestgreen;
-
 }
 
 
 #liveChatCol{
   flex: 1;
-  /* background-color: red; */
 }
 
 #liveChatCol > .textCol{
   background-color: palegreen;
   width: 100%;
-  /* display: flex; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0px;
 }
 
 #messagesCol{
@@ -225,8 +221,7 @@ body{
   align-items: flex-start;
   justify-content: flex-start;
   align-self: flex-start;
-  /* max-height: 700px; */
-  /* width:100%; */
+  margin: 0px;
 }
 
 #messagesList{
@@ -236,10 +231,12 @@ body{
   justify-content: flex-start;
   flex-direction: column;
   scroll-behavior: auto;
+  text-align: left;
 }
 #messagesList > * {
   display: flex;
   flex-direction: column;
+  text-align: left;
   justify-content: flex-start;
   align-self: flex-start;
   width: 100%;
@@ -255,8 +252,6 @@ body{
 
 #buildingEventsCol{
   flex: 3;
-  /* justify-content: center; */
-  /* background-color: green; */
 }
 
 #buildingEventsCol > .textCol{
@@ -267,8 +262,6 @@ body{
 #postsCol{
   flex: 2;
   align-items: center;
-  /* justify-content: flex-start; */
-  /* background-color: blue; */
 }
 
 #postsCol > .textCol{
@@ -287,15 +280,9 @@ body{
   display: flex;
   flex-direction: column;
   color: pink;
-
 }
 
 .addButton{
-  /* display: flex;
-  /* flex: 1; */
-  /* justify-content:flex-end; */
-  /* align-items: center; */
-  /* flex-direction: column; */
   background-color: darkgreen;
   border-color: darkgreen;
   /* height: 100%; */
@@ -304,12 +291,6 @@ body{
   width: fit-content;
 }
 .aButton{
-  /* display: flex;
-  /* flex: 1; */
-  /* justify-content:flex-end; */
-  /* align-items: center; */
-  /* flex-direction: column; */
-  /* height: 100%; */
   -webkit-box-shadow: 6px 5px 13px -2px #000000; 
   box-shadow: 6px 5px 13px -2px #000000;
   width: fit-content;
@@ -324,5 +305,4 @@ hr{
   border-style: inset;
   border-width: 1px;
   border-color: darkolivegreen;
-  /* color: darkolivegreen; */
 }
