@@ -10,8 +10,6 @@ C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\Apartme
 C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\ApartmentNetwork.RazorCoreGenerate.cache
 C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Home\LoginPartial.cshtml.g.cs
-C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Home\LoginReg.cshtml.g.cs
-C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Home\NewGroupEvent.cshtml.g.cs
 C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Home\RegisterPartial.cshtml.g.cs
 C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
@@ -64,3 +62,9 @@ C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\Apartme
 C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\staticwebassets\ApartmentNetwork.StaticWebAssets.xml
 C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\ApartmentNetwork.genruntimeconfig.cache
 C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\bin\Debug\netcoreapp3.1\libman.json
+C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Home\BuildCreateSuccess.cshtml.g.cs
+C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Home\BuildingCheck.cshtml.g.cs
+C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Home\BuildingInput.cshtml.g.cs
+C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Home\NavPartial.cshtml.g.cs
+C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Home\PendingResidents.cshtml.g.cs
+C:\Users\Alex J. Gendal\Documents\Coding Dojo Bootcamp\Personal Projects\ApartmentNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Home\Wait.cshtml.g.cs

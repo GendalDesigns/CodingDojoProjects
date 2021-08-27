@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -64,6 +64,15 @@ namespace ApartmentNetwork.Controllers
         [HttpGet("register/building")]
         public IActionResult BuildingInput()
         {
+            //Check if User is logged in
+            int? sessionID = HttpContext.Session.GetInt32("UserId");
+            Console.WriteLine("UserId is "+ sessionID);
+            if (sessionID==null)
+            {
+                ModelState.AddModelError("LoginPassword", "Please Login First");
+                ModelState.AddModelError("FirstName", "Please Register First");
+                return View("Index");
+            }
             return View();
         }
 
@@ -109,6 +118,15 @@ namespace ApartmentNetwork.Controllers
         [HttpGet("register/success")]
         public IActionResult BuildCreateSuccess()
         {
+            //Check if User is logged in
+            int? sessionID = HttpContext.Session.GetInt32("UserId");
+            Console.WriteLine("UserId is "+ sessionID);
+            if (sessionID==null)
+            {
+                ModelState.AddModelError("LoginPassword", "Please Login First");
+                ModelState.AddModelError("FirstName", "Please Register First");
+                return View("Index");
+            }
             return View();
         }
 
@@ -117,6 +135,16 @@ namespace ApartmentNetwork.Controllers
         [HttpGet("register/confirmationNeeded")]
         public IActionResult Wait()
         {
+            //Check if User is logged in
+            /* int? sessionID = HttpContext.Session.GetInt32("UserId");
+            Console.WriteLine("UserId is "+ sessionID);
+            if (sessionID==null)
+            {
+                ModelState.AddModelError("LoginPassword", "Please Login First");
+                ModelState.AddModelError("FirstName", "Please Register First");
+                return View("Index");
+            } */
+
             User activeUser = _context.Users
                 .FirstOrDefault(usr => usr.UserId == (int)HttpContext.Session.GetInt32("UserId"));
             ViewBag.BuildingAdmin = _context.Users
@@ -194,7 +222,7 @@ namespace ApartmentNetwork.Controllers
             {
                 ModelState.AddModelError("LoginPassword", "Please Login First");
                 ModelState.AddModelError("FirstName", "Please Register First");
-                return View("LoginReg");
+                return View("Index");
             }
             //Import User data from database
             User userInDb = _context.Users
@@ -237,6 +265,16 @@ namespace ApartmentNetwork.Controllers
         [HttpGet("pendingResidents")]
         public IActionResult PendingResidents()
         {
+            //Check if User is logged in
+            int? sessionID = HttpContext.Session.GetInt32("UserId");
+            Console.WriteLine("UserId is "+ sessionID);
+            if (sessionID==null)
+            {
+                ModelState.AddModelError("LoginPassword", "Please Login First");
+                ModelState.AddModelError("FirstName", "Please Register First");
+                return View("Index");
+            }
+
             //Confirm active user is Admin
             var activeUser = _context.Users.FirstOrDefault(usr => usr.UserId == (int)HttpContext.Session.GetInt32("UserId"));
             if(activeUser.IsAdmin == true)
@@ -275,54 +313,6 @@ namespace ApartmentNetwork.Controllers
 
             return RedirectToAction("PendingResidents");
         }
-
-
-
-        // DISPLAY NEW GROUPEVENT PAGE
-        // [HttpGet("NewGroupEvent")]
-        // public IActionResult NewGroupEvent()
-        // {
-        //     return View();
-        // }
-
-
-        // CREATE NEW GROUPEVENT PROCESS
-        // [HttpPost("NewGroupEvent/process")]
-        // public IActionResult NewGroupEventProcess(GroupEvent newGroupEvent)
-        // {
-        //     //CHECK IF USER IS LOGGED IN
-        //     int? sessionID = HttpContext.Session.GetInt32("UserId");
-        //     Console.WriteLine("UserId is "+ sessionID);
-        //     if (sessionID==null)
-        //     {
-        //         ModelState.AddModelError("LoginPassword", "Please Login First");
-        //         ModelState.AddModelError("FirstName", "Please Register First");
-        //         return View("LoginReg");
-        //     }
-        //     User userInDb = _context.Users
-        //             .FirstOrDefault(u => u.UserId == sessionID);
-        //     ViewBag.CurrentUser = userInDb;
-
-
-            // FORM VALIDATION
-        //     if (ModelState.IsValid)
-        //     {
-        //         // CHECK THAT GROUPEVENT DATE IS IN THE FUTURE
-        //         if (newGroupEvent.DateAndTime > DateTime.Now)
-        //         {
-        //             newGroupEvent.UserId = (int)sessionID;//Sets GroupEvent UserId = to logged-in user
-        //             _context.Add(newGroupEvent);
-        //             _context.SaveChanges();
-        //             return RedirectToAction("SingleGroupEvent", new {id = newGroupEvent.GroupEventID});
-        //         }
-        //         else
-        //         {
-        //             ModelState.AddModelError("DateAndTime", "You can't have an event in the past!");
-        //             return View("NewGroupEvent");
-        //         }
-        //     }
-        //     return View("NewGroupEvent");
-        // }
 
 
         public IActionResult Privacy()

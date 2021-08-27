@@ -2,27 +2,28 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+  white-space:normal;
+  /* text-align: center; */
+  /* word-break: break-all; */
 }
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+  /* color: #0366d6; */
+  text-decoration: none;
 }
 
-.btn-primary {
-  color: #fff;
+/* .btn-primary { */
+  /* color: #fff;
   background-color: #1b6ec2;
-  border-color: #1861ac;
-}
+  border-color: #1861ac; */
+/* } */
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
+/* .nav-pills .nav-link.active, .nav-pills .show > .nav-link { */
+  /* color: #fff;
   background-color: #1b6ec2;
-  border-color: #1861ac;
-}
+  border-color: #1861ac; */
+/* } */
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -70,7 +71,9 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-
+/* background-color: forestgreen;
+background-color: palegreen;
+background-color: olivedrab; */
 
 
 * {
@@ -78,36 +81,113 @@ body {
   width: auto;
   margin: 0px auto;
   padding: 0px;
+  
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   /* border: .25px solid rgb(129, 173, 158); */
+  /* background-color: oldlace; */
 }
 
-#navBar{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: sandybrown;
-  align-items:center;
-  margin: 0px;
-  width: 100%;
-  /* padding: 5px; */
-}
-
-#navButtons{
-  display: flex;
-  justify-content: space-around;
-}
-
-#dashboardLayout{
-  border: .25px solid aquamarine;
-  display: flex;
-  justify-content: flex-start;
-  /* flex-direction: column; */
-  background-color: oldlace;
+.wholePage{
+  /* background-color: teal; */
   height: 100%;
   width: 100%;
 }
 
+body{
+  background-color:olivedrab;
+}
+
+/* LOGIN/REGISTER CSS */
+
+.canvas{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: whitesmoke;
+  /* border: 2px solid green; */
+  /* background-color: blue; */
+  margin: 10px;
+  padding-bottom: 10px;
+}
+
+.buildInfo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  /* border: 2px solid green; */
+  /* background-color: blue; */
+  color: whitesmoke;
+  margin: 10px;
+  padding-bottom: 10px;
+}
+
+.loginRegEntry{
+  height: fit-content;
+  /* border: 5px solid green; */
+  margin: 10px;
+  padding: 10px;
+  /* background-color: chartreuse; */
+}
+
+
+.pendingResident{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* color: whitesmoke; */
+  margin-top: 15px;
+}
+
+.successText{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: whitesmoke;
+  margin-top: 10px;
+}
+#successText >h3{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: whitesmoke;
+}
+
+/* DASHBOARD CSS */
+.navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: lightgreen;
+  align-items:center;
+  margin: 0px;
+  width: 100%;
+  /* white-space:normal; */
+  /* text-decoration: none; */
+  padding: 5px;
+  -webkit-box-shadow: 6px 5px 13px -2px #000000; 
+  box-shadow: 6px 5px 13px -2px #000000;
+}
+
+#navButtons > *{
+  /* display: flex; */
+  /* justify-content: space-around; */
+  -webkit-box-shadow: 6px 5px 13px -2px #000000; 
+  box-shadow: 6px 5px 13px -2px #000000;
+}
+
+#dashboardLayout{
+  /* border: .25px solid aquamarine; */
+  display: flex;
+  justify-content: flex-start;
+  /* flex-direction: column; */
+  /* background-color: oldlace; */
+  height: 100%;
+  width: 100%;
+}
 
 .infoCol{
   display: flex;
@@ -118,36 +198,66 @@ body {
   padding: 5px;
   height: 100%;
   width: 100%;
+  -webkit-box-shadow: 6px 5px 13px -2px #000000; 
+  box-shadow: 6px 5px 13px -2px #000000;
+  background-color: forestgreen;
+
 }
+
 
 #liveChatCol{
   flex: 1;
-  background-color: red;
+  /* background-color: red; */
 }
 
 #liveChatCol > .textCol{
-  background-color: lightcoral;
+  background-color: palegreen;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#messagesCol{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: flex-start;
+  /* width:100%; */
+}
+
+#messagesList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: flex-start;
+  /* width:80%; */
+  list-style-type: none;
+  overflow: hidden;
+  text-overflow: clip;
 }
 
 #buildingEventsCol{
-  flex: 2;
+  flex: 3;
   /* justify-content: center; */
-  background-color: green;
-  
+  /* background-color: green; */
 }
 
 #buildingEventsCol > .textCol{
-  background-color: lightgreen;
+  background-color: palegreen;
 }
 
 #postsCol{
-  flex: 1;
+  flex: 2;
   align-items: center;
   /* justify-content: flex-start; */
-  background-color: blue;
+  /* background-color: blue; */
 }
+
 #postsCol > .textCol{
-  background-color: lightblue;
+  background-color: palegreen;
 }
 
 .textCol{
@@ -165,24 +275,39 @@ body {
 
 }
 
-
 .addButton{
   /* display: flex;
   /* flex: 1; */
   /* justify-content:flex-end; */
   /* align-items: center; */
   /* flex-direction: column; */
-  /* background-color: blue; */
+  background-color: darkgreen;
+  border-color: darkgreen;
   /* height: 100%; */
+  -webkit-box-shadow: 6px 5px 13px -2px #000000; 
+  box-shadow: 6px 5px 13px -2px #000000;
+  width: fit-content;
+}
+.aButton{
+  /* display: flex;
+  /* flex: 1; */
+  /* justify-content:flex-end; */
+  /* align-items: center; */
+  /* flex-direction: column; */
+  /* height: 100%; */
+  -webkit-box-shadow: 6px 5px 13px -2px #000000; 
+  box-shadow: 6px 5px 13px -2px #000000;
   width: fit-content;
 }
 
-hr {
+hr{
   display: block;
   margin-top: 0.25em;
   margin-bottom: 0.25em;
   margin-left: auto;
   margin-right: auto;
   border-style: inset;
-  /* border-width: 1px; */
+  border-width: 1px;
+  border-color: darkolivegreen;
+  /* color: darkolivegreen; */
 }
