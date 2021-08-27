@@ -15649,11 +15649,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/davidstorer/Documents/code/Collab/CodingDojoProjects/Views/Home/BuildingCheck.cshtml",
-      "TargetPath": "Views\\Home\\BuildingCheck.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/Users/davidstorer/Documents/code/Collab/CodingDojoProjects/Views/Home/BuildingInput.cshtml",
       "TargetPath": "Views\\Home\\BuildingInput.cshtml",
       "FileKind": "mvc"

@@ -281,9 +281,9 @@ namespace ApartmentNetwork.Controllers
         [HttpGet("pendingResidents/decline/{id}")]
         public IActionResult DeclineResident(int id)
         {
-            var deleteMe = _context.Users.FirstOrDefault(usr => usr.UserId == id);
+            var changeUser = _context.Users.FirstOrDefault(usr => usr.UserId == id);
 
-            _context.Users.Remove(deleteMe);
+            changeUser.BuildingId = 1;
 
             _context.SaveChanges();
 
