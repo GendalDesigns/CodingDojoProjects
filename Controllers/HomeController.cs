@@ -136,14 +136,14 @@ namespace ApartmentNetwork.Controllers
         public IActionResult Wait()
         {
             //Check if User is logged in
-            /* int? sessionID = HttpContext.Session.GetInt32("UserId");
+            int? sessionID = HttpContext.Session.GetInt32("UserId");
             Console.WriteLine("UserId is "+ sessionID);
             if (sessionID==null)
             {
                 ModelState.AddModelError("LoginPassword", "Please Login First");
                 ModelState.AddModelError("FirstName", "Please Register First");
                 return View("Index");
-            } */
+            }
 
             User activeUser = _context.Users
                 .FirstOrDefault(usr => usr.UserId == (int)HttpContext.Session.GetInt32("UserId"));
