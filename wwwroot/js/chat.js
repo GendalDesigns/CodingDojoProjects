@@ -6,11 +6,12 @@ document.getElementById("sendButton").disabled = true;
 
 //*****// AJG Im trying to add in the BUILDING ID into the message so the receiving HTML knows which messages to display, as long as they match the sending Users's Building ID
 connection.on("ReceiveNotification", function (user, message, bldgId) {
-    // var li = document.createElement("li");
-    var li = document.createElement("div");
-    // var li = document.createElement(`<div><b style="color: #000">${user}</b>`);
-    // document.getElementById("messagesList").appendChild(li);
+    var li = document.createElement("li");
+    // var li = document.createElement("div");
+    console.log("You've received some message data!")
+    // var li = document.createElement(`<b style="color: #000"/>`);
     document.getElementById("messagesList").appendChild(li);
+    // document.getElementById("messagesList").prependChild(li);
     // We can assign user-supplied strings to an element's textContent because it
     // is not interpreted as markup. If you're assigning in any other way, you 
     // should be aware of possible script injection concerns.

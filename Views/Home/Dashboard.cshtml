@@ -27,9 +27,10 @@
             </div>
                 <div><input type="hidden" id="userInput" value="@ViewBag.CurrentUser.FirstName, @ViewBag.CurrentUser.AptNumber"/></div>
                 <div><input type="hidden" id="bldgId" value="@ViewBag.CurrentUser.BuildingId"/></div>
-                <input type="text" id="messageInput" onfocus="this.value=''"/>
-        </div> @* End of  textCol *@
-                <input type="button" id="sendButton" value="Send Message" class="addButton btn btn-lg btn-info m-3" />
+                <input type="text" id="messageInput" placeholder="Send A Messsage" onfocus="this.value=''"/>
+                <hr/>
+            </div> @* End of  textCol *@
+            <input type="button" id="sendButton" value="Send Message" class="addButton btn btn-lg btn-info m-3" />
     </div> @* End of LiveChatCol *@
 
     <div id="buildingEventsCol" class="infoCol">

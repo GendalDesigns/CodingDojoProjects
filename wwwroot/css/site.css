@@ -225,18 +225,32 @@ body{
   align-items: flex-start;
   justify-content: flex-start;
   align-self: flex-start;
+  /* max-height: 700px; */
   /* width:100%; */
 }
 
-#messagesList {
+#messagesList{
+  display: flex;
+  max-height:300px;
+  overflow-y:auto;
+  justify-content: flex-start;
+  flex-direction: column;
+  scroll-behavior: auto;
+}
+#messagesList > * {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-self: flex-start;
+  width: 100%;
   /* width:80%; */
   list-style-type: none;
-  overflow: hidden;
-  text-overflow: clip;
+  /* text-overflow: clip; */
+  margin: 0 auto;
+  padding: 2px 5px;
+  max-width:400px;
+  scroll-behavior: auto;
+  /* max-height:600px; */
 }
 
 #buildingEventsCol{
