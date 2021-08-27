@@ -37,7 +37,7 @@
         <h3>Events</h3>
         @foreach(var evnt in ViewBag.AllEvents)
         {
-            <div class="textCol">
+        <div class="textCol">
             <div class="eventTitle"><h5><b> @evnt.Title  on  @evnt.EventDate</b></h5></div>
             <div class="eventPlanner"><h6>Planner: @evnt.Creator.FirstName @evnt.Creator.LastName in @evnt.Creator.AptNumber</h6></div>
                 <p class="eventDescription">@evnt.Description</p>
@@ -47,7 +47,7 @@
         <div class="textCol">
             <div class="eventTitle"><h5><b> Birthday Party    9/17    All Day</b></h5></div>
             <div class="eventPlanner"><h6>Planner: John Goodman</h6></div>
-                <p class="eventDescription">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi accusamus voluptas reiciendis doloribus architecto necessitatibus quibusdam aut, fugiat optio distinctio quas pariatur, animi unde inventore, tempore reprehenderit fugit? Neque, adipisci?</p>
+                <p class="eventDescription">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi accusamus voluptas reiciendis doloribus architecto necessitatibus quibusdam aut.</p>
         </div>@* end of TextCol *@
         <hr/>
         <div class="textCol">
@@ -56,21 +56,15 @@
                 <p class="eventDescription">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi accusamus voluptas reiciendis doloribus architecto necessitatibus quibusdam aut, fugiat optio distinctio quas pariatur, animi unde inventore, tempore reprehenderit fugit? Neque, adipisci?</p>
         </div>@* end of TextCol *@
         <hr/>
-@* <hr style="height:2px;border-width:0;color:gray;background-color:gray"> *@
-
-
-
         <a href="/event" class="addButton btn btn-lg btn-info m-3">Add New Event</a>
-
-
     </div>
 
     <div id="postsCol" class="infoCol">
-        <h3>Posts</h3>
+        <h3>Bulletins</h3>
         @foreach(var bltn in ViewBag.AllBulletins)
         {
             <div class="textCol">
-            <div class="eventTitle"><h5><b> @bltn.Title </b></h5></div>
+            <div class="eventTitle"><h4><b> @bltn.Title </b></h4></div>
             <div class="eventTopic"><h5><b>On the topic of: @bltn.Topic </b></h5></div>
             <div class="eventPlanner"><h6>Posted by: @bltn.Creator.FirstName @bltn.Creator.LastName in @bltn.Creator.AptNumber</h6></div>
                 <p class="eventDescription">@bltn.Content</p>
@@ -89,11 +83,9 @@
             <p class="eventDescription">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque, adipisci?</p>
         </div>@* end of TextCol *@
         <hr/>
-        <a href="/bulletin" class="addButton btn btn-lg btn-info m-3">Add New Post</a>
+        <a href="/bulletin" class="addButton btn btn-lg btn-info m-3">Add New Bulletin</a>
     </div>
-
 </div>  @* dashboardLayout *@
-
 
 
     <div class="container" id="AllBuildingResidentsTable">

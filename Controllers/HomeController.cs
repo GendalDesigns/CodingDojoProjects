@@ -167,9 +167,7 @@ namespace ApartmentNetwork.Controllers
 
                     return View("Index");
                 }
-
                 PasswordHasher<LoginUser> hasher = new PasswordHasher<LoginUser>();
-
                 var result = hasher.VerifyHashedPassword(login, userInDb.Password, login.LoginPassword);
 
                 if(result == 0)
@@ -196,7 +194,6 @@ namespace ApartmentNetwork.Controllers
                 {
                     return RedirectToAction("Wait");
                 }
-
                 return RedirectToAction("Dashboard");
             }
             return View("Index");
@@ -271,7 +268,7 @@ namespace ApartmentNetwork.Controllers
             // .Include(pln => pln.Residents)
             // .Where(bldg => bldg.BuildingId == userInDb.BuildingId)
             // .ToList();
-
+                Console.WriteLine("returning dashboard view");
             return View();
         }
 
@@ -307,11 +304,8 @@ namespace ApartmentNetwork.Controllers
         public IActionResult AdmitResident(int id)
         {
             User updateMe = _context.Users.FirstOrDefault(usr => usr.UserId == id);
-
             updateMe.ConfirmedByAdmin = true;
-
             _context.SaveChanges();
-
             return RedirectToAction("PendingResidents");
         }
 
@@ -320,17 +314,23 @@ namespace ApartmentNetwork.Controllers
         public IActionResult DeclineResident(int id)
         {
             var changeUser = _context.Users.FirstOrDefault(usr => usr.UserId == id);
-
             changeUser.BuildingId = 1;
-
             _context.SaveChanges();
-
             return RedirectToAction("PendingResidents");
         }
 
         [HttpGet("/event")]
         public IActionResult EventForm()
         {
+            //Check if User is logged in
+            int? sessionID = HttpContext.Session.GetInt32("UserId");
+            Console.WriteLine("UserId is "+ sessionID);
+            if (sessionID==null)
+            {
+                ModelState.AddModelError("LoginPassword", "Please Login First");
+                ModelState.AddModelError("FirstName", "Please Register First");
+                return View("Index");
+            }
             return View();
         }
 
@@ -340,19 +340,25 @@ namespace ApartmentNetwork.Controllers
             if(ModelState.IsValid)
             {
                 newEvent.UserId = (int)HttpContext.Session.GetInt32("UserId");
-
                 _context.Add(newEvent);
                 _context.SaveChanges();
-
                 return RedirectToAction("Dashboard");
             }
-
             return View("EventForm");
         }
 
         [HttpGet("/bulletin")]
         public IActionResult BulletinForm()
         {
+            //Check if User is logged in
+            int? sessionID = HttpContext.Session.GetInt32("UserId");
+            Console.WriteLine("UserId is "+ sessionID);
+            if (sessionID==null)
+            {
+                ModelState.AddModelError("LoginPassword", "Please Login First");
+                ModelState.AddModelError("FirstName", "Please Register First");
+                return View("Index");
+            }
             return View();
         }
 
@@ -362,17 +368,12 @@ namespace ApartmentNetwork.Controllers
             if(ModelState.IsValid)
             {
                 newBulletin.UserId = (int)HttpContext.Session.GetInt32("UserId");
-
                 _context.Add(newBulletin);
                 _context.SaveChanges();
-
                 return RedirectToAction("Dashboard");
             }
-
             return View("EventForm");
         }
-
-
         public IActionResult Privacy()
         {
             return View();

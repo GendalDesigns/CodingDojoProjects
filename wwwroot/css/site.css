@@ -174,7 +174,7 @@ body{
 
 #navButtons > *{
   /* display: flex; */
-  /* justify-content: space-around; */
+  justify-content: space-around;
   -webkit-box-shadow: 6px 5px 13px -2px #000000; 
   box-shadow: 6px 5px 13px -2px #000000;
 }
@@ -195,7 +195,7 @@ body{
   flex-direction: column;
   border-radius: 10px;
   margin: 10px 5px;
-  padding: 5px;
+  padding: 10px;
   height: 100%;
   width: 100%;
   -webkit-box-shadow: 6px 5px 13px -2px #000000; 
@@ -213,7 +213,7 @@ body{
 #liveChatCol > .textCol{
   background-color: palegreen;
   width: 100%;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -261,6 +261,7 @@ body{
 
 #buildingEventsCol > .textCol{
   background-color: palegreen;
+  width: fit-content;
 }
 
 #postsCol{
