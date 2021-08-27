@@ -305,6 +305,7 @@ namespace ApartmentNetwork.Controllers
         {
             User updateMe = _context.Users.FirstOrDefault(usr => usr.UserId == id);
             updateMe.ConfirmedByAdmin = true;
+            updateMe.UpdatedAt = DateTime.Now;
             _context.SaveChanges();
             return RedirectToAction("PendingResidents");
         }
