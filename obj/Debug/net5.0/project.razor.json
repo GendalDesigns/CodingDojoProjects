@@ -15649,11 +15649,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/davidstorer/Documents/code/Collab/CodingDojoProjects/Views/Home/BuildingCheck.cshtml",
-      "TargetPath": "Views\\Home\\BuildingCheck.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/Users/davidstorer/Documents/code/Collab/CodingDojoProjects/Views/Home/BuildingInput.cshtml",
       "TargetPath": "Views\\Home\\BuildingInput.cshtml",
       "FileKind": "mvc"
@@ -15674,8 +15669,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/davidstorer/Documents/code/Collab/CodingDojoProjects/Views/Home/BulletinForm.cshtml",
+      "TargetPath": "Views\\Home\\BulletinForm.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/davidstorer/Documents/code/Collab/CodingDojoProjects/Views/Shared/Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/davidstorer/Documents/code/Collab/CodingDojoProjects/Views/Home/EventForm.cshtml",
+      "TargetPath": "Views\\Home\\EventForm.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -183,6 +183,7 @@ namespace ApartmentNetwork.Controllers
 
                 User  activeUser= _context.Users.FirstOrDefault(u => u.Email == login.LoginEmail);
                 HttpContext.Session.SetInt32("UserId", activeUser.UserId);
+                HttpContext.Session.SetInt32("BuildingId", activeUser.BuildingId);
 
                 //If user's building ID is still set to the standin defaul, redirect to the enter-builing-info page
                 if(activeUser.BuildingId == 1)
@@ -246,6 +247,19 @@ namespace ApartmentNetwork.Controllers
 
             ViewBag.PendingResidents = unadmittedCount;
 
+            //Get all Events
+            ViewBag.AllEvents = _context.Events
+                .Include(evnt => evnt.Creator)
+                .Where(evnt => evnt.Creator.BuildingId == (int)HttpContext.Session.GetInt32("BuildingId"))
+                .ToList();
+
+            //Get all Bulletins
+            ViewBag.AllBulletins = _context.Bulletins
+                .Include(bltn => bltn.Creator)
+                .Where(bltn => bltn.Creator.BuildingId == (int)HttpContext.Session.GetInt32("BuildingId"))
+                .ToList();
+            
+
             // User usersInBuilding = _context.Users
             //         .Include(usr => usr.Residence)
             //         .Where(u => u.BuildingId == sessionID);
@@ -305,13 +319,57 @@ namespace ApartmentNetwork.Controllers
         [HttpGet("pendingResidents/decline/{id}")]
         public IActionResult DeclineResident(int id)
         {
-            var deleteMe = _context.Users.FirstOrDefault(usr => usr.UserId == id);
+            var changeUser = _context.Users.FirstOrDefault(usr => usr.UserId == id);
 
-            _context.Users.Remove(deleteMe);
+            changeUser.BuildingId = 1;
 
             _context.SaveChanges();
 
             return RedirectToAction("PendingResidents");
+        }
+
+        [HttpGet("/event")]
+        public IActionResult EventForm()
+        {
+            return View();
+        }
+
+        [HttpPost("/event/submit")]
+        public IActionResult EventSubmit(Event newEvent)
+        {
+            if(ModelState.IsValid)
+            {
+                newEvent.UserId = (int)HttpContext.Session.GetInt32("UserId");
+
+                _context.Add(newEvent);
+                _context.SaveChanges();
+
+                return RedirectToAction("Dashboard");
+            }
+
+            return View("EventForm");
+        }
+
+        [HttpGet("/bulletin")]
+        public IActionResult BulletinForm()
+        {
+            return View();
+        }
+
+        [HttpPost("/bulletin/submit")]
+        public IActionResult BulletinSubmit(Bulletin newBulletin)
+        {
+            if(ModelState.IsValid)
+            {
+                newBulletin.UserId = (int)HttpContext.Session.GetInt32("UserId");
+
+                _context.Add(newBulletin);
+                _context.SaveChanges();
+
+                return RedirectToAction("Dashboard");
+            }
+
+            return View("EventForm");
         }
 
 

@@ -1,0 +1,22 @@
+@model Event
+
+<h1>Provide your event information:</h1>
+<form asp-controller="Home" asp-action="EventSubmit" method="post">
+    <label asp-for="Title"></label>
+    <input asp-for="Title">
+    <span asp-validation-for="Title"></span>
+
+    <label asp-for="EventDate"></label>
+    <input asp-for="EventDate">
+    <span asp-validation-for="EventDate"></span>
+
+    <label asp-for="Location"></label>
+    <input asp-for="Location">
+    <span asp-validation-for="Location"></span>
+
+    <label asp-for="Description"></label>
+    <input asp-for="Description">
+    <span asp-validation-for="Description"></span>
+
+    <input type="submit">
+</form>
