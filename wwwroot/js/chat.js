@@ -17,6 +17,7 @@ connection.on("ReceiveNotification", function (user, message, bldgId) {
     // should be aware of possible script injection concerns.
     console.log("You're about to receive a message!")
     li.textContent = `${user} says: ${message}`;
+    ScrollToBottom();
 });
 
 connection.start().then(function () {

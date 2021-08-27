@@ -23,7 +23,7 @@
         <h3>Live Chat</h3>
         <div class="textCol">
             <div id="messagesCol">
-                <ul id="messagesList"></ul>
+                <ul id="messagesList" onresize="ScrollToBottom()"></ul>
             </div>
             <div><input type="hidden" id="userInput" value="@ViewBag.CurrentUser.FirstName, @ViewBag.CurrentUser.AptNumber"/></div>
             <div><input type="hidden" id="bldgId" value="@ViewBag.CurrentUser.BuildingId"/></div>
@@ -71,18 +71,18 @@
         </div>@* end of TextCol *@
         <hr/>
         }
-        <div class="textCol">
+        @* <div class="textCol">
             <div class="eventTitle"><h5><b> Lost Dog</b></h5></div>
             <div class="eventPlanner"><h6>Pete Borgensen, 8g</h6></div>
             <p class="eventDescription">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque, adipisci?</p>
-        </div>@* end of TextCol *@
-        <hr/>
+        </div> *@@* end of TextCol *@
+        @* <hr/>
         <div class="textCol">
             <div class="eventTitle"><h5><b>Car Lights On</b></h5></div>
             <div class="eventPlanner"><h6>Jane Harrow, 3c</h6></div>
             <p class="eventDescription">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque, adipisci?</p>
-        </div>@* end of TextCol *@
-        <hr/>
+        </div> *@@* end of TextCol *@
+        @* <hr/> *@
         <a href="/bulletin" class="addButton btn btn-lg btn-info m-3">Add New Bulletin</a>
     </div>
 </div>  @* dashboardLayout *@
