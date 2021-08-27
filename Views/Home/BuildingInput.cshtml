@@ -1,6 +1,6 @@
 @model Building
 <nav class="navbar">
-    <h1 class="display-4">Welcome to U-nit-E!</h1>
+    <h1 class="display-4">Welcome to U-nit!</h1>
     <a href="/Logout" class="aButton btn btn-lg btn-danger m-3">Logout</a>
     </div>
 </nav>
@@ -13,7 +13,6 @@
             <input asp-for="BuildingName" class="form-control">
             <span asp-validation-for="BuildingName" class="alert-danger"></span>
         </div>
-
         <div class="form-group">
             <label asp-for="AddressLine1"></label>
             <input asp-for="AddressLine1" class="form-control">
@@ -29,13 +28,11 @@
             <input asp-for="State" class="form-control">
             <span asp-validation-for="State" class="alert-danger"></span>
         </div>
-
         <div class="form-group">
             <label asp-for="ZipCode"></label>
             <input asp-for="ZipCode" class="form-control">
             <span asp-validation-for="ZipCode" class="alert-danger"></span>
         </div>
-
         <input type="submit" class="addButton btn btn-success btn-large">
     </form>
 </div>
