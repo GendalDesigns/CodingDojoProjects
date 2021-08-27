@@ -2,36 +2,35 @@
 @using ApartmentNetwork.Models
 @* @model Building *@
 
-<nav id="navBar">
-    <h1>Dashboard!</h1>
+<nav class="navbar">
+    <h1 class="display-4">U-nit</h1>
     <div>
-        <h4>Hello @ViewBag.CurrentUser.FirstName @ViewBag.CurrentUser.LastName!</h4>
-        <h4>Building Number @ViewBag.CurrentUser.BuildingId!</h4>
+        <h3 class="display-6">Hello @ViewBag.CurrentUser.FirstName @ViewBag.CurrentUser.LastName!</h3>
+        <h3 class="display-6">Building Number @ViewBag.CurrentUser.BuildingId Dashboard!</h3>
     </div>
     <div id="navButtons">
-        
         @if(ViewBag.CurrentUser.IsAdmin == true)
         {
-            <a href="/pendingResidents">Pending Neighbors (@ViewBag.PendingResidents)</a>
+            <a href="/pendingResidents" class="aButton btn btn-warning m-3">Pending Neighbors (@ViewBag.PendingResidents)</a>
         }
-        <a href="/Logout" class="btn btn-lg btn-danger m-3">Logout</a>
+        <a href="/Logout" class="aButton btn btn-lg btn-danger m-3">Logout</a>
     </div>
 </nav>
 
 
 <div id="dashboardLayout">
-
     <div id="liveChatCol" class="infoCol">
         <h3>Live Chat</h3>
         <div class="textCol">
-        
-        <ul id="messagesList"></ul>
-        <div><input type="hidden" id="userInput" value="@ViewBag.CurrentUser.FirstName, @ViewBag.CurrentUser.AptNumber"/></div>
-        <div><input type="hidden" id="bldgId" value="@ViewBag.CurrentUser.BuildingId"/></div>
-        <input type="text" id="messageInput" onfocus="this.value=''"/>
-        <input type="button" id="sendButton" value="Send Message" class="addButton btn btn-lg btn-info m-3" />
-        @* <a class="addButton btn btn-lg btn-info m-3">Add New Message</a> *@
-        </div> @* End of  textCol *@
+            <div id="messagesCol">
+                <ul id="messagesList"></ul>
+            </div>
+                <div><input type="hidden" id="userInput" value="@ViewBag.CurrentUser.FirstName, @ViewBag.CurrentUser.AptNumber"/></div>
+                <div><input type="hidden" id="bldgId" value="@ViewBag.CurrentUser.BuildingId"/></div>
+                <input type="text" id="messageInput" placeholder="Send A Messsage" onfocus="this.value=''"/>
+                <hr/>
+            </div> @* End of  textCol *@
+            <input type="button" id="sendButton" value="Send Message" class="addButton btn btn-lg btn-info m-3" />
     </div> @* End of LiveChatCol *@
 
     <div id="buildingEventsCol" class="infoCol">
@@ -60,7 +59,9 @@
 @* <hr style="height:2px;border-width:0;color:gray;background-color:gray"> *@
 
 
+
         <a href="/event" class="addButton btn btn-lg btn-info m-3">Add New Event</a>
+
 
     </div>
 

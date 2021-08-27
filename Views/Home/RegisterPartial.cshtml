@@ -1,6 +1,6 @@
 @model User
 
-<div class="smcontainer">
+<div class="smcontainer loginRegEntry">
     <h1 class="display-4">Register</h1>
     <form asp-controller="Home" asp-action="Register" method="POST">
         <div class="form-group">
@@ -33,6 +33,6 @@
             <input asp-for="Confirm" class="form-control">
             <span asp-validation-for="Confirm" class="alert-danger"></span>
         </div>
-        <input type="submit" class="btn btn-success btn-large">
+        <input type="submit" class="addButton btn btn-success btn-large">
     </form>
 </div>
